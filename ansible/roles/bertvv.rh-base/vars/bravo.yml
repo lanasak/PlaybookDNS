@@ -1,3 +1,9 @@
 ## Allow DNS to pass through the firewall
 rhbase_firewall_allow_services:
   - dns
+rhbase_users:
+  - name: lana
+    ssh_key: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC59rlceXVMLiWXbSdZNczR+suXHcHNKrnlJEjwbblo3QMbQLn7ji4+k1gNKUOjTdJdtVCtKVZ6ANECpUbETaffApTDUMPq8seFuEkKOs4Zpp48+lH5XB6W8Qm2ftDtIlLN7ZkL0QjKLKXK+Srzyw+SIiih+ks3JBO4GsZ8xGPYSXdYvH71aEGt0x7R1wBQG5LveFyxH7lylkIPJ2nZ7oP40GMxl3U6dMSdlQ4NDvLbilIJx6M7BOfyXwP2SZTvRV/mFPR0Iw7A+N2EYU7H2VY/h3BifHfITSqrhwVupvHyD2zMGT7u68we3PhsaZfkyRuRszz6kEUxzOSuS01rppYJ Gebruiker@LAPTOP-79CI9IHI'
+    groups:
+    - users
+    - wheel
