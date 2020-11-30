@@ -1,6 +1,11 @@
+# group_vars/dns.yml
+# Variables visible to machines part of group dns. See vagrant-groups.yml
+---
 ipv6: fe80:0000:0000:0002::0002/64
 connection: "System eth1"
-
+## Allow DNS to pass through the firewall
+rhbase_firewall_allow_services:
+  - dns
 bind_allow_query:
   - any
 bind_listen_ipv4:
@@ -14,12 +19,13 @@ bind_zones:
     primaries:
       - 192.168.1.130               # Primary server(s) for this zone
     networks:
-      - '192.168.1' # VLAN 20 en 40: Guests + Servers //TODO: Fix naar goeie subnetwerken?
+      - '192.168.1.0' # VLAN 20 en 40: Guests + Servers //TODO: Fix naar goeie subnetwerken?
       - '192.168.0' # VLAN 30: Hosts
     ipv6_networks:
+    #  - fe80:0000:0000:0000:0000:0000:0000:0000
       - 'fe80:0000:0000:0002::/64' # VLAN 20: Servers
-      #- 'fe80:0000:0000:0003::/64' # VLAN 30: Hosts //TODO: Moeten deze? Deze lukken momenteel niet?
-      #- 'fe80:0000:0000:0004::/64' # VLAN 20: Guests
+    #  - 'fe80:0000:0000:0003::/64' # VLAN 30: Hosts //TODO: Moeten deze? Deze lukken momenteel niet?
+    #  - 'fe80:0000:0000:0004::/64' # VLAN 40: Guests
     name_servers:
       - bravo.corona2020.local.
     hosts:
@@ -62,3 +68,5 @@ bind_zones:
     mail_servers:
      - name: delta
        preference: 10
+
+
