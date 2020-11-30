@@ -1,0 +1,64 @@
+ipv6: fe80:0000:0000:0002::0002/64
+connection: "System eth1"
+
+bind_allow_query:
+  - any
+bind_listen_ipv4:
+  - any
+bind_listen_ipv6:
+  - any
+bind_zones:
+  # Example of a primary zone (hosts: and name_servers: ares defined)
+  - name: corona2020.local
+    create_reverse_zones: true
+    primaries:
+      - 192.168.1.130               # Primary server(s) for this zone
+    networks:
+      - '192.168.1' # VLAN 20 en 40: Guests + Servers //TODO: Fix naar goeie subnetwerken?
+      - '192.168.0' # VLAN 30: Hosts
+    ipv6_networks:
+      - 'fe80:0000:0000:0002::/64' # VLAN 20: Servers
+      #- 'fe80:0000:0000:0003::/64' # VLAN 30: Hosts //TODO: Moeten deze? Deze lukken momenteel niet?
+      #- 'fe80:0000:0000:0004::/64' # VLAN 20: Guests
+    name_servers:
+      - bravo.corona2020.local.
+    hosts:
+      - name: bravo
+        ip: 192.168.1.130
+        ipv6: fe80:0000:0000:0002::0002
+        aliases:
+          - ns1
+          - dns
+      - name: '@'
+        ip: 192.168.1.131
+        ipv6: fe80:0000:0000:0002::0003
+        aliases:
+          - charlie
+          - webserver
+          - www
+      - name: delta
+        ip: 192.168.1.132
+        ipv6: fe80:0000:0000:0002::0004
+        aliases:
+          - mail-in
+      - name: alfa
+        ip: 192.168.1.129
+        ipv6: fe80:0000:0000:0002::0001
+        aliases:
+          - domain-controller
+      - name: echo
+        ip: 192.168.1.133
+        ipv6: fe80:0000:0000:0002::0005
+        aliases:
+          - SCCM
+      - name: foxtrot
+        ip: 192.168.1.134
+        ipv6: fe80:0000:0000:0002::0005
+        aliases:
+          - dhcp
+    forwarders:
+      - 8.8.8.8
+      - 8.8.4.4
+    mail_servers:
+     - name: delta
+       preference: 10
