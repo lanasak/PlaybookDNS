@@ -19,7 +19,7 @@ bind_zones:
     primaries:
       - 192.168.1.130               # Primary server(s) for this zone
     networks:
-      - '192.168.1.0' # VLAN 20 en 40: Guests + Servers //TODO: Fix naar goeie subnetwerken?
+      - '192.168.1' # VLAN 20 en 40: Guests + Servers //TODO: Fix naar goeie subnetwerken?
       - '192.168.0' # VLAN 30: Hosts
     ipv6_networks:
     #  - fe80:0000:0000:0000:0000:0000:0000:0000
