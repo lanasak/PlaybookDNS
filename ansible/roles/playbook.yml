@@ -1,0 +1,7 @@
+- hosts: local
+  vars_files: 
+    - "roles/bertvv.rh-base/vars/bravo.yml"
+    - "roles/bertvv.bind/vars/bravo.yml"
+  roles:
+    - role: "roles/bertvv.rh-base"
+    - role: "roles/bertvv.bind"
